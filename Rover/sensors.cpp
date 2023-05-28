@@ -99,3 +99,8 @@ void Rover::read_inclinations(void)
 {
     inclination.update();
 }
+
+void Rover::update_arm(void)
+{
+    excavator_arm.update_position();
+}

@@ -109,6 +109,7 @@ public:
 
     // methods to return an angle on a particular installation location from
     // any sensor which can current supply it
+    Vector3f get_deg_location(enum InstallLocation location) const;
     float roll_deg_location(enum InstallLocation location) const;
     Inclination::Status status_location(enum InstallLocation location) const;
     bool has_data_location(enum InstallLocation location) const;

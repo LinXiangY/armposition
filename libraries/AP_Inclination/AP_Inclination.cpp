@@ -242,11 +242,24 @@ AP_Inclination_Backend *Inclination::find_instance(enum InstallLocation location
     }
     return nullptr;
 }
+Vector3f Inclination::get_deg_location(enum InstallLocation location) const
+{
+    AP_Inclination_Backend *backend = find_instance(location);
+    if (backend == nullptr) {
+        Vector3f s;
+        s.x = 0;
+        s.y = 0;
+        s.z = 0;
+        return s;
+    }
+    return backend->get_deg_from_location(location);
+}
 
 float Inclination::roll_deg_location(enum InstallLocation location) const
 {
     AP_Inclination_Backend *backend = find_instance(location);
     if (backend == nullptr) {
+        
         return 0;
     }
     return backend->get_roll_deg_from_location(location);

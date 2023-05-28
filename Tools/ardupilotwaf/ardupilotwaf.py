@@ -22,6 +22,7 @@ COMMON_VEHICLE_DEPENDENT_LIBRARIES = [
     'AP_AccelCal',
     'AP_ADC',
     'AP_AHRS',
+    'AP_ArmLocation',
     'AP_Airspeed',
     'AP_Baro',
     'AP_BattMonitor',

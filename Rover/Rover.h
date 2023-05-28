@@ -71,6 +71,7 @@
 #include <AR_Motors/AP_MotorsUGV.h>
 #include <AP_Torqeedo/AP_Torqeedo.h>
 #include <AP_AIS/AP_AIS.h>
+#include <AP_ArmLocation/AP_ArmPosition.h>
 
 #if AP_SCRIPTING_ENABLED
 #include <AP_Scripting/AP_Scripting.h>
@@ -153,6 +154,8 @@ private:
 
     // AP_RPM Module
     AP_RPM rpm_sensor;
+
+    AP_ArmLocation_Excavator excavator_arm;
 
     // Arming/Disarming management class
     AP_Arming_Rover arming;
@@ -361,6 +364,7 @@ private:
     void update_wheel_encoder();
     void read_rangefinders(void);
     void read_inclinations(void);
+    void update_arm(void);
 
     // Steering.cpp
     void set_servos(void);

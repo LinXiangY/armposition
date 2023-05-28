@@ -451,6 +451,17 @@ struct PACKED log_ICLI_t {
 };
 
 /*
+  ArmPosition log structure
+ */
+struct PACKED log_ARMPOSI_t {
+    LOG_PACKET_HEADER;
+    uint64_t time_us;
+    float x;
+    float y;
+    float z;
+};
+
+/*
   terrain log structure
  */
 struct PACKED log_TERRAIN {
@@ -1293,6 +1304,13 @@ struct PACKED log_VER {
 // @Field: Stat: Sensor state
 // @Field: Orient: Sensor orientation
 
+// @LoggerMessage: ARMPOSI
+// @Description: Robotic arm's tip position
+// @Field: TimeUS: Time since system startup
+// @Field: x: Tip's x position
+// @Field: y: Tip's y position
+// @Field: z: Tip's z position
+
 // messages for all boards
 #define LOG_COMMON_STRUCTURES \
     { LOG_FORMAT_MSG, sizeof(log_Format), \
@@ -1418,7 +1436,9 @@ LOG_STRUCTURE_FROM_AIS, \
     { LOG_MOTBATT_MSG, sizeof(log_MotBatt), \
       "MOTB", "QffffB",  "TimeUS,LiftMax,BatVolt,ThLimit,ThrAvMx,FailFlags", "s-----", "F-----" , true }, \
     { LOG_ICLI_MSG, sizeof(log_ICLI_t), \
-      "ICLI", "QBffBB",  "TimeUS,Instance,Roll,Temp,State,Location", "s#----", "F-----" , true }
+      "ICLI", "QBffBB",  "TimeUS,Instance,Roll,Temp,State,Location", "s#----", "F-----" , true }, \
+    { LOG_ARMPOSI_MSG, sizeof(log_ARMPOSI_t), \
+      "ARMPOSI", "Qfff",  "TimeUS,x,y,z", "s#----", "F-----" , true }
 
 
 // message types 0 to 63 reserved for vehicle specific use
@@ -1503,6 +1523,7 @@ enum LogMessages : uint8_t {
     LOG_MOTBATT_MSG,
     LOG_VER_MSG,
     LOG_ICLI_MSG,   //inclination sensors log
+    LOG_ARMPOSI_MSG, //armposition log
 
     _LOG_LAST_MSG_
 };
